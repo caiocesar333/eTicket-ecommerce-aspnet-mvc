@@ -33,7 +33,10 @@
                 </div>
 
                 <div class="form-group mt-4">
-                    <a class="btn btn-success float-end" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-success float-end" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    }
                     <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
                 </div>
             </div>

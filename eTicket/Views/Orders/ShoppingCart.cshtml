@@ -76,12 +76,12 @@
 {
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
-        let _total = @Html.Raw(@Model.ShoppingCartTotal)
+        let _total = @Html.Raw(Model.ShoppingCartTotal);
         paypal.Button.render({
             //Config Environment
             env: 'sandbox',
             client: {
-                sandbox: ' ASXQBSdJ-CXE3BZXb__4CitYEi82xlzDHktUO1mMyZjsy_WBJaFUdYVVac67T_NmxdMVnJPFHw914SZn'
+                sandbox: 'ASXQBSdJ-CXE3BZXb__4CitYEi82xlzDHktUO1mMyZjsy_WBJaFUdYVVac67T_NmxdMVnJPFHw914SZn'
             },
 
             //Customize Button
@@ -99,14 +99,17 @@
                    transactions: [{
                        amount: {
                            total: _total,
-                           currency: "USD",
+                           currency: 'USD',
                        }
                    }]
                });
            },
            //Execute payment
            onAuthorize: function (data, actions) {
-                console.log("payment executed")
+                return actions.payment.execute().then(()=>{
+                    var url = '@Url.Action("CompleteOrder", "Orders",new{})';
+                    window.location.href = url;
+                })
             },
 
         }, '#paypal-btn');
