@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTicket.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Display(Name ="Profile Picture")]
@@ -23,5 +25,6 @@ namespace eTicket.Models
         //Relationships
 
         public List<Actor_Movie>? Actor_Movies{ get; set; }
+
     }
 }

@@ -26,9 +26,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\NovaPasta\" />
-    <Folder Include="Views\NovaPasta\" />
-  </ItemGroup>
-
 </Project>
